@@ -34,4 +34,7 @@ body {
     color: #ffffff;
 }
 
+main {
+    display: flex;
+    justify-content: center;
 }
