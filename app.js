@@ -4,10 +4,10 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+const mainRoutes = require('./routes/admin');
 app.use(bodyParser.urlencoded());
 
-app.use((req, res, next) => {
-    res.send('Express Server Running');
-});
+// Routes
+app.use(mainRoutes);
 
 app.listen(3000);
