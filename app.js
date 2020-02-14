@@ -2,9 +2,14 @@ const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const handlebars = require('express-handlebars');
 
 // Express Server
 const app = express();
+
+// Handlebars
+app.engine('handlebars', handlebars());
+app.set('view engine', 'handlebars');
 
 // Routes
 const mainRoutes = require('./routes/admin');
