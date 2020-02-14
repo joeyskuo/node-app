@@ -8,7 +8,7 @@ const handlebars = require('express-handlebars');
 const app = express();
 
 // Handlebars
-app.engine('hbs', handlebars({defaultLayout: null, extname: '.hbs'}));
+app.engine('hbs', handlebars({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', 'hbs');
 
 // Routes
