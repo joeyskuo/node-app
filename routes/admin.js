@@ -4,7 +4,7 @@ const path = require('path');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../views', 'add-product.html'));
+    res.status(200).render('add-product', {pageTitle: 'Admin'});
 });
 
 module.exports = router;
