@@ -9,3 +9,10 @@ exports.postAddProduct = (req, res, next) => {
     product.save();
     res.redirect('/');
 }
+
+exports.getProducts = (req, res, next) => {
+    Product.fetchAll((products) => {
+        console.log(products);
+        res.send(products);
+    })
+}
