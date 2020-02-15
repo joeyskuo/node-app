@@ -1,7 +1,13 @@
 const Product = require('../models/Product');
 
 exports.getAddProduct = (req, res, next) => {
-    res.status(200).render('add-product', {pageTitle: 'Admin'});
+
+    const isLoggedIn = req.get('Cookie') ? req.get('Cookie').includes('loggedIn=true') : false;
+
+    res.render('add-product', {
+        pageTitle: 'Admin',
+        isAuthenticated: isLoggedIn
+    });
 };
 
 exports.postAddProduct = (req, res, next) => {
@@ -13,6 +19,8 @@ exports.postAddProduct = (req, res, next) => {
 exports.getProducts = (req, res, next) => {
     Product.fetchAll((products) => {
         console.log(products);
-        res.send(products);
+        res.render('add-product', {
+            isAuthenticated: req.isLoggedIn
+        })
     })
 }

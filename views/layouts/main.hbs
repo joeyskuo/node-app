@@ -12,7 +12,9 @@
         <nav class="main-header__nav">
             <ul class="main-header__item-list">
                 <li class="main-header__item"><a href="/">Shop</a></li>
+                {{#if isAuthenticated}}
                 <li class="main-header__item"><a href="/">Add Product</a></li>
+                {{/if}}
                 <li class="main-header__item flex-right"><a href="/login">Login</a></li>
             </ul>
         </nav>
