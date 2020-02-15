@@ -24,8 +24,18 @@ class Product {
         })
     }
 
-    static fetchAll() {
-        
+    static fetchAll(callback) {
+
+        const productsFile = path.join(path.dirname(process.mainModule.filename),
+        'data',
+        'products.json');
+
+        fs.readFile(productsFile, (err, data) => {
+            if(err) {
+                callback([]);
+            }
+            callback(JSON.parse(data));
+        });
     }
 
 }
