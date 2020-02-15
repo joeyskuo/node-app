@@ -2,11 +2,9 @@ const Product = require('../models/Product');
 
 exports.getAddProduct = (req, res, next) => {
 
-    const isLoggedIn = req.get('Cookie') ? req.get('Cookie').includes('loggedIn=true') : false;
-
     res.render('add-product', {
         pageTitle: 'Admin',
-        isAuthenticated: isLoggedIn
+        isAuthenticated: req.session.isLoggedIn
     });
 };
 
@@ -20,7 +18,7 @@ exports.getProducts = (req, res, next) => {
     Product.fetchAll((products) => {
         console.log(products);
         res.render('add-product', {
-            isAuthenticated: req.isLoggedIn
+            isAuthenticated: req.session.isLoggedIn
         })
     })
 }
