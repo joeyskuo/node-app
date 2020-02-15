@@ -13,6 +13,7 @@ app.set('view engine', 'hbs');
 
 // Routes
 const mainRoutes = require('./routes/admin');
+const authRoutes = require('./routes/auth');
 
 // Middleware
 app.use(bodyParser.urlencoded());
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use(mainRoutes);
+app.use(authRoutes);
 
 // Server Start
 app.listen(3000);
