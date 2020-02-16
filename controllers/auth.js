@@ -1,3 +1,6 @@
+const bcrypt = require('bcryptjs');
+const User = require('../models/User');
+
 exports.getLogin = (req, res, next) => {
     res.render('login', {
         path: '/login',
@@ -6,7 +9,28 @@ exports.getLogin = (req, res, next) => {
     });
 }
 
-exports.postLogin = (req, res, next) => {
-    req.session.isLoggedIn = true;
+exports.postLogin = async (req, res, next) => {
+
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const user = await User.findOne(email);
+
+    if(user == undefined) {
+        return res.redirect('/');
+    }
+
+    console.log("comparing " + password + " with " + user.password);
+
+    const doMatch = await bcrypt.compare(password, user.password);
+    console.log("doMatch = " + doMatch);
+
+    if(doMatch) {
+        req.session.isLoggedIn = true;
+        req.session.user = user;
+        return res.redirect('/');
+    }
+
     res.redirect('/');
+
 }
